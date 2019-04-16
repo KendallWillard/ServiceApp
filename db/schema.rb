@@ -19,6 +19,15 @@ ActiveRecord::Schema.define(version: 2019_04_16_160724) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "homeowners", force: :cascade do |t|
+  end
+
+  create_table "postings", force: :cascade do |t|
+  end
+
+  create_table "reviews", force: :cascade do |t|
+  end
+
   create_table "service_providers", force: :cascade do |t|
     t.text "type"
     t.text "name"
