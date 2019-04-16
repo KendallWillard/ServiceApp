@@ -10,13 +10,42 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
+
 ActiveRecord::Schema.define(version: 2019_04_16_165123) do
 
   create_table "appointments", force: :cascade do |t|
+    t.time "time"
+    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  create_table "service_providers", force: :cascade do |t|
+    t.text "type"
+    t.text "name"
+    t.text "street_name"
+    t.text "city"
+    t.text "state"
+    t.integer "zipcode"
+    t.text "service_area"
+    t.integer "years_in_service"
+    t.float "average_rating"
+    t.integer "services_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["services_id"], name: "index_service_providers_on_services_id"
+  end
+
+  create_table "services", force: :cascade do |t|
+    t.text "name"
+    t.text "description"
+    t.integer "service_provider_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["service_provider_id"], name: "index_services_on_service_provider_id"
+    
+    
   create_table "homeowners", force: :cascade do |t|
     t.text "first_name"
     t.text "last_name"
@@ -65,15 +94,4 @@ ActiveRecord::Schema.define(version: 2019_04_16_165123) do
     t.integer "posting_id"
     t.index ["posting_id"], name: "index_reviews_on_posting_id"
   end
-
-  create_table "service_providers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "services", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
 end
