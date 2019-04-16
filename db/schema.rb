@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2019_04_16_174316) do
   end
 
   create_table "service_providers", force: :cascade do |t|
-    t.text "type"
+    t.text "service_provider_type"
     t.text "name"
     t.text "street_name"
     t.text "city"

@@ -1,7 +1,7 @@
 class CreateServiceProviders < ActiveRecord::Migration[5.2]
   def change
     create_table :service_providers do |t|
-      t.text :type
+      t.text :service_provider_type
       t.text :name
       t.text :street_name
       t.text :city
