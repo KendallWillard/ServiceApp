@@ -1,0 +1,13 @@
+<h1>Homeowners</h1>
+
+<ul>
+  <% @homeowners.all.each do |homeowner| %>
+  <li>
+    <%= homeowner.first_name %>
+    <%= homeowner.last_name %>
+    <%= link_to "View", homeowner_path(homeowner) %>
+    <%= link_to "Delete", homeowner_path(homeowner), method: :delete %>
+    <%= link_to "Edit", edit_homeowner_path(homeowner) %>
+  </li>
+  <% end %>
+</ul>
