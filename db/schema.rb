@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_174316) do
+ActiveRecord::Schema.define(version: 2019_04_16_223504) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "date"
@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2019_04_16_174316) do
     t.integer "postings_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "username"
     t.index ["postings_id"], name: "index_homeowners_on_postings_id"
   end
 

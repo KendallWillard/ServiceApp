@@ -1,5 +1,5 @@
 class HomeownersController < ApplicationController
-  
+
   def index
     @homeowners = Homeowner.all
   end
@@ -9,15 +9,24 @@ class HomeownersController < ApplicationController
   end
 
   def create
-    @homeowner = Homeowner.create(homeowner_params)
-    if (@homeowner.errors.any?)
-      render :new
+    # Verify passwords match
+    if params[:homeowner][:password] == params[:homeowner][:password_confirmation]
+      @homeowner = Homeowner.create(homeowner_params)
+      if (@homeowner.errors.any?)
+        render :new
+      else
+        #Store the users information in the session hash
+        session[:homeowner_id] = @homeowner.id
+        render :show
+      end
     else
-    redirect_to homeowners_path
+      #the passwords did not match
+      render :new
     end
   end
 
   def show
+    # return head(:forbidden) unless session.include? :user_id
     @homeowner = Homeowner.find(params[:id])
   end
 
@@ -41,6 +50,7 @@ class HomeownersController < ApplicationController
 
   def homeowner_params
     params.require(:homeowner).permit(:first_name, :last_name, :street_name,
-                                      :city, :state, :zipcode, :email)
+                                      :city, :state, :zipcode, :email, :username,
+                                      :password, :password_confirmation)
   end
 end
