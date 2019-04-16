@@ -1,0 +1,34 @@
+<% @service_provider.errors.full_messages.each do |message| %>
+<p><%= message %></p>
+<% end %>
+
+<%= form_for @service_provider do |f| %>
+  <%= f.label :service_provider_type %>
+  <%= f.text_field :service_provider_type %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :street_name %>
+  <%= f.text_field :street_name %>
+
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+
+  <%= f.label :state %>
+  <%= f.text_field :state %>
+
+  <%= f.label :zipcode %>
+  <%= f.text_field :zipcode %>
+
+  <%= f.label :service_area %>
+  <%= f.text_field :service_area %>
+
+  <%= f.label :years_in_service %>
+  <%= f.text_field :years_in_service %>
+
+  <%= label_tag "Services Offered" %>
+  <%= f.collection_select(:service_ids, @services, :id, :name, {:multiple => true}) %>
+
+  <%= f.submit "Add Service Provider" %>
+<% end %>

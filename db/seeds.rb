@@ -8,7 +8,7 @@
 
 
 
-Service.destroy_all
+# Service.destroy_all
 
 framing = Service.create(name: "Framing", description: "Rough-in framing; stick-built, steel stud, block, or post and beam.")
 concrete = Service.create(name: "Concrete", description: "Structural concrete.")
@@ -31,4 +31,4 @@ fixtures_and_finishes = Service.create(name: "Fixtures and Finishes", descriptio
 
 # jane_doe = Homeowner.create(name: "Jane Doe", address: "1247 N Cantilever Ln Loveland, CO 80537", phone: 7201148945, email: "jane_do3@email.com")
 
-jack_of_all_trades = Service_Provider.create(type: "Freelancer", name: "Jack of All Trades", street_name: "411 Main St", city: "Loveland", state: "CO", zipcode: 80537, service_area: "50 mile radius", years_in_service: 8)
+ jack_of_all_trades = ServiceProvider.create(service_provider_type: "Freelancer", name: "Jack of All Trades", street_name: "411 Main St", city: "Loveland", state: "CO", zipcode: 80537, service_area: "50 mile radius", years_in_service: 8)
