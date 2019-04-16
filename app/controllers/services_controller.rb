@@ -1,3 +1,14 @@
 class ServicesController < ApplicationController
-  has_and_belongs_to_many :service_providers
+  before_action :list_all_services, only: [:index]
+
+  def index
+  end
+
+
+  private
+
+  def list_all_services
+    @services = Service.all
+  end
+
 end
