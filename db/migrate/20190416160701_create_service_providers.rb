@@ -10,7 +10,7 @@ class CreateServiceProviders < ActiveRecord::Migration[5.2]
       t.text :service_area
       t.integer :years_in_service
       t.float :average_rating
-      t.references :services 
+      t.references :services
 
       t.timestamps
     end

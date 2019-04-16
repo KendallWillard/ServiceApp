@@ -9,6 +9,7 @@ class CreatePostings < ActiveRecord::Migration[5.2]
       t.text :finish_date
       t.references :reviews
       t.references :homeowners
+      t.references :notifications 
       t.timestamps
     end
   end
