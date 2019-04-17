@@ -38,7 +38,12 @@
   <%= f.text_field :years_in_service %>
 
   <%= label_tag "Services Offered" %>
-  <%= f.collection_select(:services_id, @services, :id, :name, {:multiple => true}) %>
+
+  <%= f.collection_check_boxes(:service_ids, @services, :id, :name) do |b| %>
+  <ul>
+    <li><%= b.label {b.check_box + b.text } %></li>
+  </ul>
+  <% end %> 
 
   <%= f.submit "Add Service Provider" %>
 <% end %>

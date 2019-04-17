@@ -2,7 +2,7 @@
 <%= message %>
 <% end %>
 
-<%= form_for :service_provider do |f| %>
+<%= form_for @service_provider do |f| %>
   <%= f.label :service_provider_type %>
   <%= f.text_field :service_provider_type %>
 
@@ -28,7 +28,7 @@
   <%= f.text_field :years_in_service %>
 
   <%= label_tag "Services Offered" %>
-  <%= f.collection_select :service_id, @services, :id, :name %>
+  <%= f.collection_select(:services_id, @services, :id, :name, {}, {:multiple => true}) %>
 
   <%= f.submit "Update Service Provider" %>
 <% end %>

@@ -1,11 +1,11 @@
 class CreateNotifications < ActiveRecord::Migration[5.2]
   def change
-    create_table :notifications_tables do |t|
+    create_table :notifications do |t|
       t.text :title
       t.text :description
-      t.references :appointments
-      t.references :services
-      t.references :postings
+      t.references :appointment
+      t.references :service
+      t.references :posting
     end
   end
 end
