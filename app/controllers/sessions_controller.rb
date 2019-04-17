@@ -1,13 +1,14 @@
 class SessionsController < ApplicationController
 
   def new
+
   end
 
   def create
      # byebug
      # Boolean used to dictate whether or not to display user has entered incorrect
      # information
-    session.delete :incorrect_password
+     session.delete :incorrect_password
     if params[:user][:service_provider] == "0"
       # Homeowner login
       @homeowner = Homeowner.find_by(username: params[:user][:name])
@@ -19,6 +20,8 @@ class SessionsController < ApplicationController
         session[:user_id] = @homeowner.id
         redirect_to homeowner_path(@homeowner)
       end
+
+
     else
       # Service Provider Login
       @service_provider = ServiceProvider.find_by(username: params[:user][:name])
@@ -35,6 +38,7 @@ class SessionsController < ApplicationController
 
   def destroy
     session.delete :user_id
+    session.delete :incorrect_password
     redirect_to '/login'
   end
 end

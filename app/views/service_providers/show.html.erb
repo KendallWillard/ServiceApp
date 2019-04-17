@@ -1,3 +1,7 @@
 <h1>This is the show page for a service provider</h1>
 
 <h1><%= @service_provider.name %></h1>
+
+<%= link_to "Appointments", new_appointment_path %>
+
+  <%= button_to "Logout", '/logout', method: :post %>
