@@ -7,10 +7,12 @@ class SessionsController < ApplicationController
      # byebug
      # Boolean used to dictate whether or not to display user has entered incorrect
      # information
+    session.delete :incorrect_password
     if params[:user][:service_provider] == "0"
       # Homeowner login
       @homeowner = Homeowner.find_by(username: params[:user][:name])
       if @homeowner == NIL
+        session[:incorrect_password] = true
         redirect_to '/login'
       else
         head(:forbidden) unless @homeowner.authenticate(params[:user][:password])
@@ -27,7 +29,6 @@ class SessionsController < ApplicationController
         head(:forbidden) unless @service_provider.authenticate(params[:user][:password])
         session[:user_id] = @service_provider.id
         redirect_to service_provider_path(@service_provider)
-        session.delete :incorrect_password
       end
     end
   end
