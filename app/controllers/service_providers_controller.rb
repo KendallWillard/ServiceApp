@@ -6,6 +6,8 @@ class ServiceProvidersController < ApplicationController
   def index
     if params[:format]
       @service = Service.find(params[:format])
+    elsif params[:search_term]
+      @service_providers = ServiceProvider.where("name LIKE ?", "%#{params[:search_term]}%")
     end
     @service ? @filter_results = true : @filter_results = false
   end
