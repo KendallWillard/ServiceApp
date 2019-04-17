@@ -6,6 +6,8 @@ class ServiceProvidersController < ApplicationController
   def index
     if params[:format]
       @service = Service.find(params[:format])
+    elsif params[:search_term]
+      @service_providers = ServiceProvider.where("name LIKE ?", "%#{params[:search_term]}%")
     end
     @service ? @filter_results = true : @filter_results = false
   end
@@ -50,7 +52,9 @@ class ServiceProvidersController < ApplicationController
   private
 
   def service_provider_params
-    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city, :state, :zipcode, :service_area, :years_in_service, :average_rating, service_ids:[])
+    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city, 
+      :state, :zipcode, :service_area, :years_in_service, :average_rating, :username, :password, :password_confirmation,
+      service_ids:[])
   end
 
   def find_service_provider

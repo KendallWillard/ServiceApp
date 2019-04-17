@@ -31,8 +31,12 @@ class HomeownersController < ApplicationController
 
   def show
     return head(:forbidden) unless session.include? :homeowner_id
-    @services = Service.all
-    @homeowner = Homeowner.find(params[:id])
+    if(params[:search_term])
+      redirect_to service_providers_path
+    else
+      @services = Service.all
+      @homeowner = Homeowner.find(params[:id])
+    end
 
   end
 

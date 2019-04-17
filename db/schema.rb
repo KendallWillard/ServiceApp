@@ -13,7 +13,6 @@
 
 ActiveRecord::Schema.define(version: 2019_04_17_161947) do
 
-
   create_table "appointments", force: :cascade do |t|
     t.date "date"
     t.time "time"
@@ -101,6 +100,8 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.integer "service_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "password_digest"
     t.index ["service_id"], name: "index_service_providers_services_on_service_id"
     t.index ["service_provider_id"], name: "index_service_providers_services_on_service_provider_id"
   end
