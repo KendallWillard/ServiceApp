@@ -1,3 +1,10 @@
+
+<% if @verify_password == false %>
+   <h1>ERROR! Passwords must match!</h1>
+<% end %>
+
+
+
 <%= form_for @homeowner do |f| %>
 
   <%= f.label :username %>
