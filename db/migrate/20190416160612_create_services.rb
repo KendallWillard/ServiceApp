@@ -4,7 +4,7 @@ class CreateServices < ActiveRecord::Migration[5.2]
       t.text :name
       t.text :description
       t.references :service_provider
-      t.references :notifications 
+      t.references :notification 
 
       t.timestamps
     end

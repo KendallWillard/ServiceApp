@@ -3,7 +3,7 @@ class CreateAppointments < ActiveRecord::Migration[5.2]
     create_table :appointments do |t|
       t.date :date
       t.time :time
-      t.references :notifications 
+      t.references :notification
 
       t.timestamps
     end

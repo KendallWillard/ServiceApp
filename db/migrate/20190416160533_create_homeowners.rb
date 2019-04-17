@@ -8,7 +8,7 @@ class CreateHomeowners < ActiveRecord::Migration[5.2]
       t.text :state
       t.integer :zipcode
       t.text :email
-      t.references :postings
+      t.references :posting
       t.timestamps
     end
   end

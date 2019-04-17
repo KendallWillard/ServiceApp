@@ -20,6 +20,13 @@ class ServiceProvidersController < ApplicationController
     else
       redirect_to service_providers_path
     end
+
+    # params[:services][:id].each do |service|
+    #   if !services.empty?
+    #     @service_provider.build(:services_id => service)
+    #   end
+    # end
+
   end
 
   def edit
@@ -32,7 +39,7 @@ class ServiceProvidersController < ApplicationController
   private
 
   def service_provider_params
-    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city, :state, :zipcode, :service_area, :years_in_service, :average_rating, :services_id, [:services_id])
+    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city, :state, :zipcode, :service_area, :years_in_service, :average_rating, service_ids:[])
   end
 
   def find_service_provider
