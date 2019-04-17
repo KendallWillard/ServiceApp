@@ -1,7 +1,36 @@
-<h1>This is the show page for a service provider</h1>
-
+<<header>
 <h1><%= @service_provider.name %></h1>
+
 
 <%= link_to "Appointments", new_appointment_path %>
 
   <%= button_to "Logout", '/logout', method: :post %>
+
+<ul>
+  <li><h3><%= @service_provider.street_name %>, <%= @service_provider.city %>, <%= @service_provider.state %>
+    <%= @service_provider.zipcode %></h3></li>
+  <li><h3><%= @service_provider.years_in_service %> Years of Experience </h3></li>
+  <li><h3>Average Rating: <%= @service_provider.average_rating %></h3></li>
+</ul>
+<h2>Services Offered</h2>
+<ul>
+  <% @service_provider.services.each do |service| %>
+  <li><%= service.name %></li>
+  <% end %>
+</ul>
+</header>
+
+<div class="appointments">
+  <h2>Appointments</h2>
+  <div>
+    INSERT APPOINTMENT CARD HERE
+  </div>
+</div>
+
+<div>
+  <h2>Completed Projects</h2>
+  <div class="past_projects">
+    INSERT PAST PROJECT CARD HERE
+  </div>
+</div>
+

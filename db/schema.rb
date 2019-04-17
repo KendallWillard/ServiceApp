@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_17_173850) do
+
+ActiveRecord::Schema.define(version: 2019_04_17_161947) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "date"
@@ -41,7 +42,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_173850) do
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "username"
-    t.index ["postings_id"], name: "index_homeowners_on_postings_id"
+    t.index ["posting_id"], name: "index_homeowners_on_posting_id"
   end
 
   create_table "notifications_tables", force: :cascade do |t|
@@ -100,7 +101,8 @@ ActiveRecord::Schema.define(version: 2019_04_17_173850) do
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "password_digest"
-    t.index ["services_id"], name: "index_service_providers_on_services_id"
+
+    t.index ["service_id"], name: "index_service_providers_on_service_id"
   end
 
   create_table "service_providers_services", force: :cascade do |t|
