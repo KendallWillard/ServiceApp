@@ -8,14 +8,14 @@
   <% end %>
 <% end %>
 
-<% if @service_provider_array %>
-  <ul>
-    <% @service_provider_array.each do |service_provider| %>
-    <li>
-      <%= link_to service_provider.name, service_provider_path(service_provider) %>
-    </li>
-    <% end %>
-  </ul>
+  <% if @service_provider_array %>
+    <ul>
+      <% @service_provider_array.each do |service_provider| %>
+      <li>
+        <%= link_to service_provider.name, service_provider_path(service_provider) %>
+      </li>
+  <% end %>
+    </ul>
 
  <% else %>
   <ul>

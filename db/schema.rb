@@ -10,15 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_04_17_161947) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "date"
     t.time "time"
-    t.integer "notification_id"
+    t.integer "notifications_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["notification_id"], name: "index_appointments_on_notification_id"
+    t.string "description"
+    t.integer "services_id"
+    t.integer "service_providers_id"
+    t.integer "homeowners_id"
+    t.index ["homeowners_id"], name: "index_appointments_on_homeowners_id"
+    t.index ["notifications_id"], name: "index_appointments_on_notifications_id"
+    t.index ["service_providers_id"], name: "index_appointments_on_service_providers_id"
+    t.index ["services_id"], name: "index_appointments_on_services_id"
   end
 
   create_table "homeowners", force: :cascade do |t|
@@ -29,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.text "state"
     t.integer "zipcode"
     t.text "email"
-    t.integer "posting_id"
+    t.integer "postings_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
@@ -37,15 +45,15 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.index ["posting_id"], name: "index_homeowners_on_posting_id"
   end
 
-  create_table "notifications", force: :cascade do |t|
+  create_table "notifications_tables", force: :cascade do |t|
     t.text "title"
     t.text "description"
-    t.integer "appointment_id"
-    t.integer "service_id"
-    t.integer "posting_id"
-    t.index ["appointment_id"], name: "index_notifications_on_appointment_id"
-    t.index ["posting_id"], name: "index_notifications_on_posting_id"
-    t.index ["service_id"], name: "index_notifications_on_service_id"
+    t.integer "appointments_id"
+    t.integer "services_id"
+    t.integer "postings_id"
+    t.index ["appointments_id"], name: "index_notifications_tables_on_appointments_id"
+    t.index ["postings_id"], name: "index_notifications_tables_on_postings_id"
+    t.index ["services_id"], name: "index_notifications_tables_on_services_id"
   end
 
   create_table "postings", force: :cascade do |t|
@@ -55,26 +63,26 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.string "after_image_url"
     t.text "start_date"
     t.text "finish_date"
-    t.integer "review_id"
-    t.integer "homeowner_id"
-    t.integer "notification_id"
+    t.integer "reviews_id"
+    t.integer "homeowners_id"
+    t.integer "notifications_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["homeowner_id"], name: "index_postings_on_homeowner_id"
-    t.index ["notification_id"], name: "index_postings_on_notification_id"
-    t.index ["review_id"], name: "index_postings_on_review_id"
+    t.index ["homeowners_id"], name: "index_postings_on_homeowners_id"
+    t.index ["notifications_id"], name: "index_postings_on_notifications_id"
+    t.index ["reviews_id"], name: "index_postings_on_reviews_id"
   end
 
   create_table "reviews", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "notification_id"
+    t.integer "notifications_id"
     t.float "amount"
     t.float "rating"
     t.text "description"
     t.text "date"
     t.integer "posting_id"
-    t.index ["notification_id"], name: "index_reviews_on_notification_id"
+    t.index ["notifications_id"], name: "index_reviews_on_notifications_id"
     t.index ["posting_id"], name: "index_reviews_on_posting_id"
   end
 
@@ -88,11 +96,12 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.text "service_area"
     t.integer "years_in_service"
     t.float "average_rating"
-    t.integer "service_id"
+    t.integer "services_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username"
     t.string "password_digest"
+
     t.index ["service_id"], name: "index_service_providers_on_service_id"
   end
 
@@ -109,10 +118,10 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.text "name"
     t.text "description"
     t.integer "service_provider_id"
-    t.integer "notification_id"
+    t.integer "notifications_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["notification_id"], name: "index_services_on_notification_id"
+    t.index ["notifications_id"], name: "index_services_on_notifications_id"
     t.index ["service_provider_id"], name: "index_services_on_service_provider_id"
   end
 

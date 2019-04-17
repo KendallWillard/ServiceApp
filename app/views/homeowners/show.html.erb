@@ -1,21 +1,20 @@
 <h1>Homeowner Page</h1>
 
-<h2>Name: </h2>
-  <%= @homeowner.first_name %>
-  <%= @homeowner.last_name %>
+<h2>Name: <%=  @homeowner.first_name %> <%= @homeowner.last_name %> </h2>
+  <%= button_to "Logout", '/logout', method: :post %>
 
-<h4>Address:</h4>
-  <%= @homeowner.street_name %>,
-  <%= @homeowner.city %>,
-  <%= @homeowner.state %>,
-  <%= @homeowner.zipcode %>
+<h4>Address: <%= @homeowner.street_name %>,
+<%= @homeowner.city %>,
+<%= @homeowner.state %>,
+<%= @homeowner.zipcode %>
+</h4>
 
-<h4>Email</h4>
-  <%= @homeowner.email %>
+
+<h4>Email: <%= @homeowner.email %> </h4>
 
 <%= form_tag "/search", method: :get do %>
   <%= text_field_tag :search_term %>
-  <%= submit_tag "search" %>
+  <%= submit_tag "Search Service Providers" %>
 <% end %>
 
 
@@ -25,5 +24,3 @@
         <li><%= link_to service.name, service_providers_path(service) %> </li>
       <% end %>
     </ul>
-
-  <%= button_to "Logout", '/logout', method: :post %>

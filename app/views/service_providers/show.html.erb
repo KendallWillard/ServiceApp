@@ -1,5 +1,11 @@
 <<header>
 <h1><%= @service_provider.name %></h1>
+
+
+<%= link_to "Appointments", new_appointment_path %>
+
+  <%= button_to "Logout", '/logout', method: :post %>
+
 <ul>
   <li><h3><%= @service_provider.street_name %>, <%= @service_provider.city %>, <%= @service_provider.state %>
     <%= @service_provider.zipcode %></h3></li>
@@ -27,3 +33,4 @@
     INSERT PAST PROJECT CARD HERE
   </div>
 </div>
+
