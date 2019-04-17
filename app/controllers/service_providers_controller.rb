@@ -4,6 +4,10 @@ class ServiceProvidersController < ApplicationController
   before_action :find_service_provider, only: [:show, :edit, :update]
 
   def index
+    if params[:format]
+      @service = Service.find(params[:format])
+    end
+    @service ? @filter_results = true : @filter_results = false
   end
 
   def show
@@ -34,6 +38,13 @@ class ServiceProvidersController < ApplicationController
 
   def update
     @service_provider.update
+  end
+
+  def destroy
+    @service_provider = ServiceProvider.find(params[:id])
+    @service_provider.delete
+
+    redirect_to service_providers_path
   end
 
   private

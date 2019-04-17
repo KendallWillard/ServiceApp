@@ -1,8 +1,27 @@
 <h1>Service Providers</h1>
 
-<% @service_providers.each do |service_provider| %>
 
-<ul>
-  <li><%= service_provider.name %></li>
-</ul>
+
+<% if @filter_results %>
+  <% @service_provider_array = @service_providers.select do |service_provider| %>
+    <% service_provider.services_id == @service.id %>
+  <% end %>
+<% end %>
+
+<% if @service_provider_array %>
+  <ul>
+    <% @service_provider_array.each do |service_provider| %>
+    <li>
+      <%= link_to service_provider.name, service_provider_path(service_provider) %>
+    </li>
+    <% end %>
+  </ul>
+
+ <% else %>
+  <ul>
+    <% @service_providers.each do |service_provider| %>
+      <li><%= service_provider.name %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

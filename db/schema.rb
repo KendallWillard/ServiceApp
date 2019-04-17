@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_04_17_161947) do
+
 
   create_table "appointments", force: :cascade do |t|
     t.date "date"
@@ -33,6 +35,8 @@ ActiveRecord::Schema.define(version: 2019_04_17_161947) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["posting_id"], name: "index_homeowners_on_posting_id"
+    t.string "password_digest"
+    t.string "username"
   end
 
   create_table "notifications", force: :cascade do |t|

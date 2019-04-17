@@ -4,7 +4,12 @@ class ServicesController < ApplicationController
   def index
   end
 
+  def destroy
+    @service = Service.find(params[:id])
+    @service.delete
 
+    redirect_to services_path
+  end
   private
 
   def list_all_services
