@@ -7,9 +7,9 @@ class CreatePostings < ActiveRecord::Migration[5.2]
       t.string :after_image_url
       t.text :start_date
       t.text :finish_date
-      t.references :reviews
-      t.references :homeowners
-      t.references :notifications 
+      t.references :review
+      t.references :homeowner
+      t.references :notification
       t.timestamps
     end
   end
