@@ -2,7 +2,8 @@ class ServiceProvidersController < ApplicationController
   before_action :list_all_service_providers, only: [:index]
   before_action :list_all_services, only: [:index, :new, :create]
   before_action :find_service_provider, only: [:show, :edit, :update]
-
+  before_action :find_service_provider_postings, only: [:show]
+  
   def index
     if params[:format]
       @service = Service.find(params[:format])
@@ -26,13 +27,6 @@ class ServiceProvidersController < ApplicationController
     else
       redirect_to service_providers_path
     end
-
-    # params[:services][:id].each do |service|
-    #   if !services.empty?
-    #     @service_provider.build(:services_id => service)
-    #   end
-    # end
-
   end
 
   def edit
@@ -52,7 +46,7 @@ class ServiceProvidersController < ApplicationController
   private
 
   def service_provider_params
-    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city, 
+    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city,
       :state, :zipcode, :service_area, :years_in_service, :average_rating, :username, :password, :password_confirmation,
       service_ids:[])
   end
@@ -67,6 +61,10 @@ class ServiceProvidersController < ApplicationController
 
   def list_all_service_providers
     @service_providers = ServiceProvider.all
+  end
+
+  def find_service_provider_postings
+    @postings = Posting.select(params[:service_provider_id])
   end
 
 end
