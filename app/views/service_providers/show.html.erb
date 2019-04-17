@@ -1,24 +1,92 @@
-<<header>
-<h1><%= @service_provider.name %></h1>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Service Provider Home Page</title>
+    <link rel="stylesheet"
+      href="localhost:3000/service_providers/:id">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+      </script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <style>
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+  }
+  </style>
+  </head>
+  <body>
+    <div class="header text-center" style="margin-bottom:0">
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" href="#">Explore</a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Service Providers</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container" style="margin-top:30px">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="fakeimg">Fake Image
+          </div>
+        </div>
+        <div class="col-sm-8">
+          <h1><%= @service_provider.name %></h1>
+          <h3><p><%= @service_provider.street_name %>, <%= @service_provider.city %>,
+            <%= @service_provider.state %> <%= @service_provider.zipcode %></p>
+            <p><%= @service_provider.years_in_service %> Years of Experience
+            Average Rating: <%= @service_provider.average_rating %></p>
+          </h3>
+        </div>
+        <div class="col-sm-8">
+          <h3>Services Offered</h3>
+          <h4><p><% @service_provider.services.each do |service| %>
+          <%= service.name %>,
+          <% end %></p>
+          </h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="container text-center" style="margin-top:30px">
+      <h2>Completed Projects</h2>
+      <% @postings.each do |posting| %>
+      <div class="card mb-3" style="max-width: 1000px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <img src="<%= posting.after_image_url %>" class="card-img" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title"><%= posting.title %></h5>
+                <p class="card-text"><%= posting.description %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% end %>
+      </div>
 
 
-<%= link_to "Appointments", new_appointment_path %>
 
-  <%= button_to "Logout", '/logout', method: :post %>
+  </body>
+</html>
 
-<ul>
-  <li><h3><%= @service_provider.street_name %>, <%= @service_provider.city %>, <%= @service_provider.state %>
-    <%= @service_provider.zipcode %></h3></li>
-  <li><h3><%= @service_provider.years_in_service %> Years of Experience </h3></li>
-  <li><h3>Average Rating: <%= @service_provider.average_rating %></h3></li>
-</ul>
-<h2>Services Offered</h2>
-<ul>
-  <% @service_provider.services.each do |service| %>
-  <li><%= service.name %></li>
-  <% end %>
-</ul>
-</header>
+
 
 <div class="appointments">
   <h2>Appointments</h2>
@@ -27,10 +95,4 @@
   </div>
 </div>
 
-<div>
-  <h2>Completed Projects</h2>
-  <div class="past_projects">
-    INSERT PAST PROJECT CARD HERE
-  </div>
-</div>
 
