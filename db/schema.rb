@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_16_223504) do
+ActiveRecord::Schema.define(version: 2019_04_17_160331) do
 
   create_table "appointments", force: :cascade do |t|
     t.date "date"
@@ -91,6 +91,8 @@ ActiveRecord::Schema.define(version: 2019_04_16_223504) do
     t.integer "services_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username"
+    t.string "password_digest"
     t.index ["services_id"], name: "index_service_providers_on_services_id"
   end
 

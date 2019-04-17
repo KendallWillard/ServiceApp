@@ -1,9 +1,16 @@
+<% byebug %>
+<% if session[:incorrect_password] == true  %>
+  <h2>ERROR. Incorrect username or password. Please try again or create an acconut</h2>
+<% end %>
 <h1> Login </h1>
 
 <%= form_for :user, url: '/login', method: :post do |f| %>
   Username: <%= f.text_field :name %>
   Password: <%= f.password_field :password %>
+  Service Provider: <%= f.check_box "service_provider" %>
+
   <%= f.submit "Log in" %>
 <% end %>
 
-<%= button_to "Create an account", new_homeowner_path, method: :get %>
+<%= button_to "Create A Homeowner Account", new_homeowner_path, method: :get %>
+<%= button_to "Create A Service Provider Account", new_service_provider_path, method: :get %>

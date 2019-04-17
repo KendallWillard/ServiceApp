@@ -3,6 +3,16 @@
 <% end %>
 
 <%= form_for @service_provider do |f| %>
+
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %>
+  
   <%= f.label :service_provider_type %>
   <%= f.text_field :service_provider_type %>
 

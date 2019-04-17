@@ -45,7 +45,9 @@ class ServiceProvidersController < ApplicationController
   private
 
   def service_provider_params
-    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city, :state, :zipcode, :service_area, :years_in_service, :average_rating, :services_id, [:services_id])
+    params.require(:service_provider).permit(:service_provider_type, :name, :street_name,
+      :city, :state, :zipcode, :service_area, :years_in_service, :average_rating, :services_id,
+       :username, :password, :password_confirmation)
   end
 
   def find_service_provider
