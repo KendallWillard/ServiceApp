@@ -10,24 +10,30 @@ class HomeownersController < ApplicationController
 
   def create
     # Verify passwords match
+    @verify_password = true
     if params[:homeowner][:password] == params[:homeowner][:password_confirmation]
       @homeowner = Homeowner.create(homeowner_params)
       if (@homeowner.errors.any?)
         render :new
       else
         #Store the users information in the session hash
+        @services = Service.all
         session[:homeowner_id] = @homeowner.id
         render :show
       end
     else
       #the passwords did not match
+      @verify_password = false
+      @homeowner = Homeowner.new
       render :new
     end
   end
 
   def show
-    # return head(:forbidden) unless session.include? :user_id
+    return head(:forbidden) unless session.include? :homeowner_id
+    @services = Service.all
     @homeowner = Homeowner.find(params[:id])
+
   end
 
   def edit
