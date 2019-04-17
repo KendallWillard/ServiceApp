@@ -1,0 +1,16 @@
+<h1>Appointments New Page</h1>
+
+<%= form_for @appointment do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %>
+
+  <%= f.label :time %>
+  <%= f.time_field :time %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description %>
+
+  <%= f.hidden_field :homeowners_id, value: @homeowner.id %>
+  <%= f.collection_select :services_id, @services, :id, :name %>
+  <%= f.submit %>
+  <% end %>
