@@ -29,14 +29,24 @@
       <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="/services">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Service Providers</a>
+            <a class="nav-link" href="/service_providers">Service Providers</a>
           </li>
+
+          <% if session[:user_id] == @service_provider.id %>
+          <li class="nav-item">
+            <a class="nav-link" href="/service_providers/:id/edit">Update Profile</a>
+          </li>
+          <% else %>
+
+          <% end %>
+
           <li class="nav-item">
               <%= link_to "Logout", '/logout', method: :post, class: "nav-link" %>
           </li>
+
         </ul>
       </div>
     </nav>
@@ -49,17 +59,19 @@
         </div>
         <div class="col-sm-8">
           <h1><%= @service_provider.name %></h1>
-          <h3><p><%= @service_provider.street_name %>, <%= @service_provider.city %>,
+          <h4><p><%= @service_provider.street_name %>, <%= @service_provider.city %>,
             <%= @service_provider.state %> <%= @service_provider.zipcode %></p>
-            <p><%= @service_provider.years_in_service %> Years of Experience
-            Average Rating: <%= @service_provider.average_rating %></p>
-          </h3>
+            <p><%= @service_provider.years_in_service %> Years of Experience |
+            Average Customer Rating: <%= @service_provider.average_rating %></p>
+          </h4>
         </div>
         <div class="col-sm-8">
           <h3>Services Offered</h3>
           <h4><p><% @service_provider.services.each do |service| %>
-          <%= service.name %>,
-          <% end %></p>
+          <%= service.name %> <% if service != @service_provider.services.last %>
+          <%= " | "%>
+          <% end %>
+        <% end %></p>
           </h4>
         </div>
       </div>
