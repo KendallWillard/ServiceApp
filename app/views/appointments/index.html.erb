@@ -3,12 +3,11 @@
 <ul>
   <% @appointments.each do |appointment| %>
   <li>
-    <% byebug %>
     Date: <%= appointment.date %> <br>
     Time: <%= appointment.time %> <br>
     Description: <%= appointment.description %> <br>
-    Homeowner: <%= @homeowner.first_name %> <%= @homeowner.last_name %>
-
+    Homeowner: <%= @homeowner.first_name %> <%= @homeowner.last_name %> <br>
+    Service Provider: <%= ServiceProvider.find(appointment.service_provider_id).name %>
   </li>
   <% end %>
 </ul>
