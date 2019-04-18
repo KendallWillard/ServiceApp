@@ -2,7 +2,8 @@ class PostingsController < ApplicationController
 
   before_action :find_posting, only: [:show, :update, :destroy]
   before_action :list_all_postings, only: [:index, :create, :update]
-  before_action :find_appointment, only: [:show, :create]
+  before_action :find_appointment, only: [:show]
+  before_action :find_service_provider, only: []
 
   def index
   end
@@ -15,6 +16,13 @@ class PostingsController < ApplicationController
   end
 
   def create
+    @posting = Posting.create(posting_params)
+    if @posting.errors.any?
+      render :new
+    else
+      @appointment = Appointment.find(params[:appointment_id]).delete
+      redirect_to service_providers_path
+    end
   end
 
   def edit
@@ -45,6 +53,10 @@ class PostingsController < ApplicationController
 
   def find_appointment
     @appointment = Appointment.find(params[:appointment_id])
+  end
+
+  def find_service_provider
+    @service_provider = ServiceProvider.find(@appointment.service_provider_id)
   end
 
 end
