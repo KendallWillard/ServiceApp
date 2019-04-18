@@ -31,6 +31,7 @@ class SessionsController < ApplicationController
       # THIS CHECK for NIL must happen FIRST or else is service provider is nil and it
       # tries to authenticate it will throw an error
       if @service_provider != NIL && @service_provider.authenticate(params[:user][:password])
+        session[:homeowner_active] = FALSE
         session[:user_id] = @service_provider.id
         redirect_to service_provider_path(@service_provider)
       else
