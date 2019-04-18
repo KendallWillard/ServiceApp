@@ -27,7 +27,9 @@ class ServiceProvidersController < ApplicationController
       if @service_provider.errors.any?
         render :new
       else
-        session[:user_id] = @session_provider.id
+        @postings = Posting.all
+        session[:homeowner_active] = FALSE
+        session[:user_id] = @service_provider.id
         render :show
       end
     end

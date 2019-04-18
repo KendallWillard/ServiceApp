@@ -1,6 +1,13 @@
 class SessionsController < ApplicationController
 
   def new
+    if session[:homeowner_active] == TRUE
+      redirect_to "/homeowner/#{session[:user_id]}"
+    elsif session[:homeowner_active] == FALSE
+      redirect_to "/service_providers/#{session[:user_id]}"
+    # A 3rd option exists here which is session[:homeowner_active]
+    # does not exist yet, at which case we want to load the login page. Booyaa
+    end
 
   end
 
@@ -11,11 +18,13 @@ class SessionsController < ApplicationController
      session.delete :incorrect_password
     if params[:user][:service_provider] == "0"
       # Homeowner login
+      session[:homeowner_active] = true
       @homeowner = Homeowner.find_by(username: params[:user][:name])
       # THIS CHECK for NIL must happen FIRST or else is homeowner is nil and it trys
       # to authenticate it will throw an error
       if @homeowner != NIL && @homeowner.authenticate(params[:user][:password])
         session[:user_id] = @homeowner.id
+        session[:homeowner_active] = TRUE
         redirect_to homeowner_path(@homeowner)
       else
         session[:incorrect_password] = true
@@ -25,6 +34,7 @@ class SessionsController < ApplicationController
 
     else
       # Service Provider Login
+      session[:homeowner_active] = false
       @service_provider = ServiceProvider.find_by(username: params[:user][:name])
       # THIS CHECK for NIL must happen FIRST or else is service provider is nil and it
       # tries to authenticate it will throw an error
@@ -41,6 +51,7 @@ class SessionsController < ApplicationController
   def destroy
     session.delete :user_id
     session.delete :incorrect_password
+    session.delete :homeowner_active
     redirect_to '/login'
   end
 end
