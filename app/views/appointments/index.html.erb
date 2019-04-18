@@ -3,11 +3,12 @@
 <ul>
   <% @appointments.each do |appointment| %>
   <li>
+    <% byebug %>
     Date: <%= appointment.date %> <br>
     Time: <%= appointment.time %> <br>
     Description: <%= appointment.description %> <br>
     Homeowner: <%= @homeowner.first_name %> <%= @homeowner.last_name %>
-    
+
   </li>
   <% end %>
 </ul>

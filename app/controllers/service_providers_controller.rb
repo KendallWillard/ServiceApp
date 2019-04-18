@@ -3,7 +3,7 @@ class ServiceProvidersController < ApplicationController
   before_action :list_all_services, only: [:index, :new, :create]
   before_action :find_service_provider, only: [:show, :edit, :update]
   before_action :find_service_provider_postings, only: [:show]
-  
+
   def index
     if params[:format]
       @service = Service.find(params[:format])
@@ -21,11 +21,15 @@ class ServiceProvidersController < ApplicationController
   end
 
   def create
-    @service_provider = ServiceProvider.create(service_provider_params)
-    if @service_provider.errors.any?
-      render :new
-    else
-      redirect_to service_providers_path
+    @verify_password = true
+    if params[:service_provider][:password] == params[:service_provider][:password_confirmation]
+      @service_provider = ServiceProvider.create(service_provider_params)
+      if @service_provider.errors.any?
+        render :new
+      else
+        session[:user_id] = @session_provider.id
+        render :show
+      end
     end
   end
 

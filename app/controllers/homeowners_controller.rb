@@ -18,7 +18,7 @@ class HomeownersController < ApplicationController
       else
         #Store the users information in the session hash
         @services = Service.all
-        session[:homeowner_id] = @homeowner.id
+        session[:user_id] = @homeowner.id
         render :show
       end
     else
@@ -37,8 +37,10 @@ class HomeownersController < ApplicationController
       else
         @services = Service.all
       end
+    elsif session[:user_id] != NIL
+      redirect_to homeowner_path(session[:user_id])
     else
-    redirect_to '/login'
+      redirect_to '/login'
     end
   end
 

@@ -12,26 +12,28 @@ class SessionsController < ApplicationController
     if params[:user][:service_provider] == "0"
       # Homeowner login
       @homeowner = Homeowner.find_by(username: params[:user][:name])
-      if @homeowner == NIL
-        session[:incorrect_password] = true
-        redirect_to '/login'
-      else
-        head(:forbidden) unless @homeowner.authenticate(params[:user][:password])
+      # THIS CHECK for NIL must happen FIRST or else is homeowner is nil and it trys
+      # to authenticate it will throw an error
+      if @homeowner != NIL && @homeowner.authenticate(params[:user][:password])
         session[:user_id] = @homeowner.id
         redirect_to homeowner_path(@homeowner)
+      else
+        session[:incorrect_password] = true
+        redirect_to '/login'
       end
 
 
     else
       # Service Provider Login
       @service_provider = ServiceProvider.find_by(username: params[:user][:name])
-      if @service_provider == NIL
-        session[:incorrect_password] = true
-        redirect_to '/login'
-      else
-        head(:forbidden) unless @service_provider.authenticate(params[:user][:password])
+      # THIS CHECK for NIL must happen FIRST or else is service provider is nil and it
+      # tries to authenticate it will throw an error
+      if @service_provider != NIL && @service_provider.authenticate(params[:user][:password])
         session[:user_id] = @service_provider.id
         redirect_to service_provider_path(@service_provider)
+      else
+        session[:incorrect_password] = true
+        redirect_to '/login'
       end
     end
   end
