@@ -3,6 +3,7 @@ class ServiceProvidersController < ApplicationController
   before_action :list_all_services, only: [:index, :new, :create]
   before_action :find_service_provider, only: [:show, :edit, :update, :destroy]
   before_action :find_service_provider_postings, only: [:show]
+  before_action :find_service_provider_appointments, only: [:show]
 
   def index
     if params[:format]
@@ -71,6 +72,10 @@ class ServiceProvidersController < ApplicationController
 
   def find_service_provider_postings
     @postings = Posting.select(params[:service_provider_id])
+  end
+
+  def find_service_provider_appointments
+    @appointments = Appointment.select(params[:service_provider_id])
   end
 
 end
