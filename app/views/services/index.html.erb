@@ -49,12 +49,14 @@
 
     <div class="card-deck" style="margin-top:30px">
       <% @services.each do |service| %>
-        <div class="card">
-          <img src="..." class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title"><%= link_to service.name, service_path(service) %></h5>
-            <p class="card-text"><%= service.description %></p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        <div class="buttcheeks">
+          <div class="card">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= link_to service.name, service_path(service) %></h5>
+              <p class="card-text"><%= service.description %></p>
+              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            </div>
           </div>
         </div>
       <% end %>

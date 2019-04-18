@@ -105,7 +105,12 @@
 
 <div class="appointments">
   <h2>Appointments</h2>
+  <div class="book-appointment">
+    <%= link_to 'Book Appointment', '/appointments/new' %>
+  </div>
   <div>
-    INSERT APPOINTMENT CARD HERE
+    <% @appointments.each do |appointment| %>
+    <%= appointment.description %>
+    <% end %>
   </div>
 </div>
