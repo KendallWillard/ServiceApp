@@ -41,11 +41,17 @@
           <% else %>
 
           <% end %>
-
+          <% # A third option exists here. session[:homeowner_active] can be set to NIL %>
+          <% # which means nobody is logged in %>
+          <% if session[:homeowner_active] == FALSE || session[:homeowner_active] == TRUE %>
           <li class="nav-item">
               <%= link_to "Logout", '/logout', method: :post, class: "nav-link" %>
           </li>
 
+          <% else %>
+          <li class="nav-item">
+            <a class="nav-link" href="/login">Login</a>
+          <% end %>
         </ul>
       </div>
     </nav>
@@ -105,7 +111,11 @@
 <div class="appointments">
   <h2>Appointments</h2>
   <div class="book-appointment">
+    <% # A third option exists here. session[:homeowner_active] can be set to NIL %>
+    <% # which means nobody is logged in %>
+    <% if session[:homeowner_active] == TRUE || session[:homeowner_active] == FALSE %>
     <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
+    <% end %>
   </div>
   <div>
     <% if @appointments %>
