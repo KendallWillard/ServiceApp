@@ -71,7 +71,7 @@ class HomeownersController < ApplicationController
   end
 
   def find_homeowner_appointments
-    appointments_ordered = Appointment.order(:date)
+    appointments_ordered = Appointment.order(:date).reverse
     @appointments = appointments_ordered.select do |appointment|
       appointment.homeowner_id == params[:id].to_i
     end
