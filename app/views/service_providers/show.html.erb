@@ -34,7 +34,7 @@
             <a class="nav-link" href="/service_providers">Service Providers</a>
           </li>
 
-          <% if session[:user_id] == @service_provider.id %>
+          <% if session[:user_id] == @service_provider.id && session[:homeowner_active] == FALSE %>
           <li class="nav-item">
             <a class="nav-link" href="/service_providers/:id/edit">Update Profile</a>
           </li>
@@ -67,10 +67,11 @@
         <div class="col-sm-8">
           <h3>Services Offered</h3>
           <h4><p><% @service_provider.services.each do |service| %>
-          <%= service.name %> <% if service != @service_provider.services.last %>
-          <%= " | "%>
-          <% end %>
-        <% end %></p>
+            <%= service.name %>
+              <% if service != @service_provider.services.last %>
+                <%= " | "%>
+              <% end %>
+            <% end %></p>
           </h4>
         </div>
       </div>
@@ -79,21 +80,21 @@
     <div class="container text-center" style="margin-top:30px">
       <h2>Completed Projects</h2>
       <% @postings.each do |posting| %>
-      <div class="card mb-3" style="max-width: 1000px;">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src="<%= posting.after_image_url %>" class="card-img" alt="...">
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title"><%= posting.title %></h5>
+        <div class="card mb-3" style="max-width: 1000px;">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src="<%= posting.after_image_url %>" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title"><%= posting.title %></h5>
                 <p class="card-text"><%= posting.description %></p>
               </div>
             </div>
           </div>
         </div>
-        <% end %>
-      </div>
+      <% end %>
+    </div>
 
   </body>
 </html>
@@ -109,7 +110,8 @@
 
     <% if @appointments %>
       <% @appointments.each do |appointment| %>
-        <p><%= appointment.description %></p>
+        <p><%= link_to appointment.description, '/appointments/:id' %></p>
       <% end %>
+    <% end %>
   </div>
 </div>
