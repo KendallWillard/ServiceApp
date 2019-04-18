@@ -1,8 +1,8 @@
 class ApplicationController < ActionController::Base
 
   def current_user
-    session[:homeowner_id]
+    session[:user_id]
+    session[:homeowner_active]
     session[:incorrect_password]
-    session[:chosen_service]
   end
 end

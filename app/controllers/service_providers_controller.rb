@@ -21,11 +21,17 @@ class ServiceProvidersController < ApplicationController
   end
 
   def create
-    @service_provider = ServiceProvider.create(service_provider_params)
-    if @service_provider.errors.any?
-      render :new
-    else
-      redirect_to service_providers_path
+    @verify_password = true
+    if params[:service_provider][:password] == params[:service_provider][:password_confirmation]
+      @service_provider = ServiceProvider.create(service_provider_params)
+      if @service_provider.errors.any?
+        render :new
+      else
+        @postings = Posting.all
+        session[:homeowner_active] = FALSE
+        session[:user_id] = @service_provider.id
+        render :show
+      end
     end
   end
 
