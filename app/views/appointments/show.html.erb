@@ -33,6 +33,13 @@
           <li class="nav-item">
             <a class="nav-link" href="/service_providers">Service Providers</a>
           </li>
+          <% if session[:user_id] == @service_provider.id && session[:homeowner_active] == FALSE %>
+          <li class="nav-item">
+            <a class="nav-link" href="/service_providers/:id/edit">Update Profile</a>
+          </li>
+          <% else %>
+
+          <% end %>
         </ul>
       </div>
     </nav>

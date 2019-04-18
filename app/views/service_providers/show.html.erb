@@ -104,13 +104,13 @@
 <div class="appointments">
   <h2>Appointments</h2>
   <div class="book-appointment">
-    <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
+    <%= link_to 'Book Appointment', new_appointment_path(@service_provider.id) %>
   </div>
   <div>
 
     <% if @appointments %>
       <% @appointments.each do |appointment| %>
-        <p><%= link_to appointment.description, '/appointments/:id' %></p>
+        <p><%= link_to appointment.description, appointment_path(appointment) %></p>
       <% end %>
     <% end %>
   </div>
