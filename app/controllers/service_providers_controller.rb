@@ -1,9 +1,9 @@
 class ServiceProvidersController < ApplicationController
   before_action :list_all_service_providers, only: [:index]
   before_action :list_all_services, only: [:index, :new, :create]
-  before_action :find_service_provider, only: [:show, :edit, :update]
+  before_action :find_service_provider, only: [:show, :edit, :update, :destroy]
   before_action :find_service_provider_postings, only: [:show]
-  
+
   def index
     if params[:format]
       @service = Service.find(params[:format])
