@@ -1,19 +1,18 @@
 class AppointmentsController < ApplicationController
-  before_action :find_homeowner, only: [:index, :new]
   before_action :list_all_appointments, only: [:index]
-  before_action :list_all_services, only: [:new]
 
   def index
   end
 
   def new
-    @services = Service.all
+    service_provider = ServiceProvider.find(params["format"])
+    @services = service_provider.services.all
     @appointment = Appointment.new
   end
 
   def create
     @appointment = Appointment.create(appointment_params)
-    redirect_to appointments_path
+    redirect_to homeowner_path(@appointment.homeowner_id)
   end
 
   private
@@ -23,9 +22,7 @@ class AppointmentsController < ApplicationController
     :service_id, :service_provider_id, :homeowner_id, :service_provider_id)
   end
 
-  def find_homeowner
-    @homeowner = Homeowner.find(session[:user_id])
-  end
+
 
   def list_all_appointments
     @appointments = Appointment.all

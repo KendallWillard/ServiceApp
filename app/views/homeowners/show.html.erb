@@ -24,3 +24,10 @@
         <li><%= link_to service.name, service_providers_path(service) %> </li>
       <% end %>
     </ul>
+
+<h4>Appointments</h4>
+<ul>
+  <% @appointments.each do |appointment| %>
+  <li><%= appointment.description %></li>
+  <% end %>
+</ul>

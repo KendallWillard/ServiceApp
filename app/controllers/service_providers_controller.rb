@@ -75,7 +75,9 @@ class ServiceProvidersController < ApplicationController
   end
 
   def find_service_provider_appointments
-    @appointments = Appointment.select(params[:service_provider_id])
+    @appointments = Appointment.select do |appointment|
+      appointment.service_provider_id == params[:id].to_i
+    end
   end
 
 end
