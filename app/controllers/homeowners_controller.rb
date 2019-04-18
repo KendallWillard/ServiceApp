@@ -30,19 +30,20 @@ class HomeownersController < ApplicationController
   end
 
   def show
-
-    if session[:user_id] == params[:id].to_i && session[:homeowner_active]
+    if session[:user_id] == params[:id].to_i && session[:homeowner_active] == TRUE
       @homeowner = Homeowner.find(session[:user_id])
       if(params[:search_term])
         redirect_to service_providers_path
       else
+        find_homeowner_appointments
         @services = Service.all
       end
     elsif session[:homeowner_active] == FALSE
-      redirect_to service_provider_path(session[:user_id])
+      redirect_to '/login'
     else
       redirect_to '/login'
     end
+
   end
 
   def edit
@@ -67,5 +68,11 @@ class HomeownersController < ApplicationController
     params.require(:homeowner).permit(:first_name, :last_name, :street_name,
                                       :city, :state, :zipcode, :email, :username,
                                       :password, :password_confirmation)
+  end
+
+  def find_homeowner_appointments
+    @appointments = Appointment.select do |appointment|
+      appointment.homeowner_id == params[:id].to_i
+    end
   end
 end
