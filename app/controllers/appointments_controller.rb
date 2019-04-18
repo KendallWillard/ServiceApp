@@ -20,7 +20,7 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:date, :time, :notification_id, :description,
-    :service_id, :service_provider_id, :homeowner_id)
+    :service_id, :service_provider_id, :homeowner_id, :service_provider_id)
   end
 
   def find_homeowner
@@ -33,6 +33,7 @@ class AppointmentsController < ApplicationController
 
   def list_all_services
     @services = Service.all
-  end 
+  end
+
 
 end
