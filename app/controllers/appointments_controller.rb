@@ -2,8 +2,8 @@ class AppointmentsController < ApplicationController
   before_action :list_all_appointments, only: [:index, :show]
   before_action :list_all_services, only: [:index, :show, :new]
   before_action :find_appointment, only: [:show]
-  before_action :find_service_provider, only: [:show]
-  before_action :find_homeowner, only: [:show]
+  before_action :find_service_provider, only: []
+  before_action :find_homeowner, only: []
 
 
 
@@ -26,7 +26,7 @@ class AppointmentsController < ApplicationController
 
   def appointment_params
     params.require(:appointment).permit(:id, :date, :time, :notification_id, :description,
-    :service_id, :service_provider_id, :homeowner_id, :service_provider_id)
+    :service_id, :service_provider_id, :homeowner_id)
   end
 
   def find_appointment
