@@ -4,7 +4,7 @@
 
 <% if @filter_results %>
   <% @service_provider_array = @service_providers.select do |service_provider| %>
-    <% service_provider.services_id == @service.id %>
+    <% service_provider.service_id == @service.id %>
   <% end %>
 <% end %>
 

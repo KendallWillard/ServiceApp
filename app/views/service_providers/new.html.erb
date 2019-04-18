@@ -2,6 +2,10 @@
 <p><%= message %></p>
 <% end %>
 
+<% if @verify_password == false %>
+   <h1>ERROR! Passwords must match!</h1>
+<% end %>
+
 <%= form_for @service_provider do |f| %>
 
   <%= f.label :username %>
@@ -12,7 +16,7 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
-  
+
   <%= f.label :service_provider_type %>
   <%= f.text_field :service_provider_type %>
 
@@ -43,7 +47,7 @@
   <ul>
     <li><%= b.label {b.check_box + b.text } %></li>
   </ul>
-  <% end %> 
+  <% end %>
 
   <%= f.submit "Add Service Provider" %>
 <% end %>

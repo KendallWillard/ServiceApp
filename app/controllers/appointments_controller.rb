@@ -6,8 +6,9 @@ class AppointmentsController < ApplicationController
   end
 
   def new
+    @services = Service.all
     @appointment = Appointment.new
-    @homeowner = Homeowner.find(session[:homeowner_id])
+    @homeowner = Homeowner.find(session[:user_id])
   end
 
   def create
