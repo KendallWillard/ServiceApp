@@ -40,6 +40,13 @@
           <% else %>
 
           <% end %>
+          <% if session[:user_id] == @service_provider.id && session[:homeowner_active] == FALSE %>
+          <li class="nav-item">
+            <a class="nav-link" href="/postings/new">Mark as Complete</a>
+          </li>
+          <% else %>
+
+          <% end %>
         </ul>
       </div>
     </nav>

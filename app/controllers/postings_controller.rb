@@ -2,7 +2,7 @@ class PostingsController < ApplicationController
 
   before_action :find_posting, only: [:show, :update, :destroy]
   before_action :list_all_postings, only: [:index, :create, :update]
-  before_action :find_appointment, only: [:new, :index, :show, :create]
+  before_action :find_appointment, only: [:show, :create]
 
   def index
   end
@@ -11,6 +11,7 @@ class PostingsController < ApplicationController
   end
 
   def new
+    @posting = Posting.new
   end
 
   def create
