@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :appointments
   resources :service_providers
-  resources :notifications
+  # resources :notifications
   resources :services
   resources :postings
   resources :reviews
