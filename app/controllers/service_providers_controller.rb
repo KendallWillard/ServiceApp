@@ -1,7 +1,7 @@
 class ServiceProvidersController < ApplicationController
   before_action :list_all_service_providers, only: [:index]
   before_action :list_all_services, only: [:index, :new, :create]
-  before_action :find_service_provider, only: [:show, :edit, :update, :destroy]
+  before_action :find_service_provider, only: [:show, :edit, :destroy]
   before_action :find_service_provider_postings, only: [:show]
   before_action :find_service_provider_appointments, only: [:show]
 
@@ -40,6 +40,7 @@ class ServiceProvidersController < ApplicationController
   end
 
   def update
+    @service_provider = ServiceProvider.find(service_provider_params)
     @service_provider.update
   end
 
@@ -53,7 +54,7 @@ class ServiceProvidersController < ApplicationController
   private
 
   def service_provider_params
-    params.require(:service_provider).permit(:service_provider_type, :name, :street_name, :city,
+    params.require(:service_provider).permit(:id, :service_provider_type, :name, :street_name, :city,
       :state, :zipcode, :service_area, :years_in_service, :average_rating, :username, :password, :password_confirmation,
       service_ids:[])
   end

@@ -95,8 +95,6 @@
         <% end %>
       </div>
 
-
-
   </body>
 </html>
 
@@ -108,10 +106,10 @@
     <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
   </div>
   <div>
+
     <% if @appointments %>
       <% @appointments.each do |appointment| %>
-      <%= appointment.description %>
+        <p><%= appointment.description %></p>
       <% end %>
-    <% end %>
   </div>
 </div>
