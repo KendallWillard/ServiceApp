@@ -106,8 +106,10 @@
     <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
   </div>
   <div>
-    <% @appointments.each do |appointment| %>
-    <p><%= appointment.description %></p>
-    <% end %>
+
+    <% if @appointments %>
+      <% @appointments.each do |appointment| %>
+        <p><%= appointment.description %></p>
+      <% end %>
   </div>
 </div>

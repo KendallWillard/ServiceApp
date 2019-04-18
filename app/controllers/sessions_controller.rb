@@ -1,14 +1,6 @@
 class SessionsController < ApplicationController
 
   def new
-    if session[:homeowner_active] == TRUE
-      redirect_to "/homeowner/#{session[:user_id]}"
-    elsif session[:homeowner_active] == FALSE
-      redirect_to "/service_providers/#{session[:user_id]}"
-    # A 3rd option exists here which is session[:homeowner_active]
-    # does not exist yet, at which case we want to load the login page. Booyaa
-    end
-
   end
 
   def create

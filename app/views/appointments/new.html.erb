@@ -9,9 +9,9 @@
 
   <%= f.label :description %>
   <%= f.text_area :description %>
-
-  <%= f.hidden_field :homeowner_id, value: @homeowner.id %>
   <%= f.collection_select :service_id, @services, :id, :name %>
+
+  <%= f.hidden_field :homeowner_id, value: session[:user_id] %>
   <%= f.hidden_field :service_provider_id, value: params["format"].to_i %>
   <%= f.submit %>
   <% end %>
