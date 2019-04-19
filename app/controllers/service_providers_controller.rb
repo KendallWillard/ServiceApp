@@ -31,7 +31,7 @@ class ServiceProvidersController < ApplicationController
         @postings = Posting.all
         session[:homeowner_active] = FALSE
         session[:user_id] = @service_provider.id
-        render :show
+        redirect_to '/login'
       end
     end
   end

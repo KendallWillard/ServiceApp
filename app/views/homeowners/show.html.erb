@@ -27,7 +27,12 @@
 
 <h4>Appointments</h4>
 <ul>
-  <% @appointments.each do |appointment| %>
-  <li><%= appointment.description %></li>
+  <% if @appointments %>
+    <% @appointments.each do |appointment| %>
+    <li><%= appointment.description %> |
+      Date: <%= appointment.date %> |
+      Time: <%= appointment.time %>
+    </li>
+    <% end %>
   <% end %>
 </ul>

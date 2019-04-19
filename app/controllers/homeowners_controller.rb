@@ -19,7 +19,7 @@ class HomeownersController < ApplicationController
         #Store the users information in the session hash
         @services = Service.all
         session[:user_id] = @homeowner.id
-        render :show
+        redirect_to '/login'
       end
     else
       #the passwords did not match
