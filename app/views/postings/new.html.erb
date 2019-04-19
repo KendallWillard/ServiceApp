@@ -65,11 +65,12 @@
           <input type="textarea" name="posting[description]" class="form-control" id="description" placeholder="Enter additional project information here">
         </div>
 
-        <%= hidden_field :homeowner_id, value: session[:user_id] %>
-        <%= hidden_field :service_provider_id, value: params["format"].to_i %>
-        <%= hidden_field :appointment_id, value: params[:service_provider][:appointment_id] %>
+        <%= hidden_field :homeowner_id, value: session[:homeowner_id] %>
+        <%= hidden_field :service_provider_id, value: session[:user_id] %>
+        <%= hidden_field :appointment_id, value: params[:appointment_id] %>
 
         <%= button_to "Create Posting", postings_path, class: "btn btn-primary" %>
+
       </form>
     </div>
   </html>
