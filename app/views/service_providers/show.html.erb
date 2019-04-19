@@ -36,7 +36,7 @@
 
           <% if session[:user_id] == @service_provider.id && session[:homeowner_active] == FALSE %>
           <li class="nav-item">
-            <a class="nav-link" href="/service_providers/:id/edit">Update Profile</a>
+            <%= link_to "Update Profile", edit_service_provider_path(@service_provider), class: "nav-link" %>
           </li>
           <% else %>
 
@@ -81,6 +81,7 @@
         </div>
       </div>
     </div>
+
     <div class="container" style="max-width">
       <div class="container text-center" style="margin-top:30px">
         <h2>Completed Projects</h2>
