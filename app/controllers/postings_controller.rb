@@ -20,6 +20,7 @@ class PostingsController < ApplicationController
     if @posting.errors.any?
       render :new
     else
+      byebug
       @appointment = Appointment.find(params[:appointment_id]).delete
       redirect_to service_providers_path
     end
@@ -42,6 +43,10 @@ class PostingsController < ApplicationController
       :after_image_url, :start_date, :finish_date, :review_id, :homeowner_id, :notification_id,
       :created_at, :updated_at)
   end
+
+  # def appointment_id_param
+  #   params.require(:params).permit(:appointment_id)
+  # end
 
   def find_posting
     @posting = Posting.find(params[:id])

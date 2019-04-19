@@ -11,6 +11,7 @@ class AppointmentsController < ApplicationController
   end
 
   def show
+    @appointment_id = @appointment.id 
   end
 
   def new

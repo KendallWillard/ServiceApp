@@ -37,12 +37,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/service_providers/:id/edit">Update Profile</a>
           </li>
-          <% else %>
 
-          <% end %>
-          <% if session[:user_id] == @service_provider.id && session[:homeowner_active] == FALSE %>
           <li class="nav-item">
-            <a class="nav-link" href="/postings/new">Mark as Complete</a>
+            <%= link_to "Mark as Complete", new_posting_path(appointment_id: @appointment.id), class: "nav-link" %>
           </li>
           <% else %>
 
