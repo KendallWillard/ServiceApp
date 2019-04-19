@@ -1,6 +1,6 @@
 class ServiceProvidersController < ApplicationController
   before_action :list_all_service_providers, only: [:index]
-  before_action :list_all_services, only: [:index, :new, :create]
+  before_action :list_all_services, only: [:index, :new, :create, :edit]
   before_action :find_service_provider, only: [:show, :edit, :destroy]
   before_action :find_service_provider_postings, only: [:show]
   before_action :find_service_provider_appointments, only: [:show]
@@ -40,8 +40,8 @@ class ServiceProvidersController < ApplicationController
   end
 
   def update
-    @service_provider = ServiceProvider.find(service_provider_params)
-    @service_provider.update
+    @service_provider = ServiceProvider.update(service_provider_params)
+    redirect_to service_provider_path(@service_provider)
   end
 
   def destroy
