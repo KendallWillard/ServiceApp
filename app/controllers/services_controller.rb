@@ -15,6 +15,9 @@ class ServicesController < ApplicationController
 
     redirect_to services_path
   end
+
+
+
   private
 
   def list_all_services
