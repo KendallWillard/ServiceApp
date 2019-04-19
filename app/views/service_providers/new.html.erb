@@ -1,3 +1,4 @@
+<h1>Create a New Service Provider Account</h1>
 <% @service_provider.errors.full_messages.each do |message| %>
 <p><%= message %></p>
 <% end %>
@@ -8,7 +9,7 @@
 <% end %>
 
 <%= form_for @service_provider do |f| %>
-  <br><br>
+  <br>
   <%= f.label :username %>
   <%= f.text_field :username %>
 
@@ -35,7 +36,7 @@
   <br><br>
   <%= f.label :image_url %>
   <%= f.text_field :image_url %>
-  <br>
+  <br><br>
   <%= f.label :service_area %>
   <%= f.text_field :service_area %>
 

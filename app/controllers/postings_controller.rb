@@ -15,7 +15,6 @@ class PostingsController < ApplicationController
     @posting = Posting.new
     @@appointment = params[:appointment_id]
     @@homeowner_id = params[:homeowner_id]
-    # session[:homeowner_id].keys[0].split('{')[1].split('}')[0].split('>')[1].to_i
   end
 
   def create
@@ -27,7 +26,7 @@ class PostingsController < ApplicationController
       # byebug
       @appointment_to_delete = Appointment.find(@@appointment)
       @appointment_to_delete.delete
-      redirect_to service_providers_path
+      redirect_to service_provider_path(params[:service_provider_id].keys[0].split('{')[1].split('}')[0].split('>')[1].to_i)
     end
   end
 
