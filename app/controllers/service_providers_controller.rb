@@ -60,7 +60,7 @@ class ServiceProvidersController < ApplicationController
   end
 
   def find_service_provider
-    # byebug
+
     @service_provider = ServiceProvider.find(params[:id])
   end
 
