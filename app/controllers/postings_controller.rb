@@ -13,15 +13,20 @@ class PostingsController < ApplicationController
 
   def new
     @posting = Posting.new
+    @@appointment = params[:appointment_id]
+    @@homeowner_id = params[:homeowner_id]
+    # session[:homeowner_id].keys[0].split('{')[1].split('}')[0].split('>')[1].to_i
   end
 
   def create
     @posting = Posting.create(posting_params)
+    @posting.homeowner_id = @@homeowner_id
     if @posting.errors.any?
       render :new
     else
-      byebug
-      @appointment = Appointment.find(params[:appointment_id]).delete
+      # byebug
+      @appointment_to_delete = Appointment.find(@@appointment)
+      @appointment_to_delete.delete
       redirect_to service_providers_path
     end
   end

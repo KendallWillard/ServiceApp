@@ -82,46 +82,45 @@
         </div>
       </div>
     </div>
-
-    <div class="container text-center" style="margin-top:30px">
-      <h2>Completed Projects</h2>
-      <% @postings.each do |posting| %>
-        <div class="card mb-3" style="max-width: 1000px;">
-          <div class="row no-gutters">
-            <div class="col-md-4">
-              <img src="<%= posting.after_image_url %>" class="card-img" alt="...">
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title"><%= posting.title %></h5>
-                <p class="card-text"><%= posting.description %></p>
+    <div class="container" style="max-width">
+      <div class="container text-center" style="margin-top:30px">
+        <h2>Completed Projects</h2>
+        <% @postings.each do |posting| %>
+          <div class="card mb-3" style="">
+            <div class="row no-gutters">
+              <div class="col-md-4">
+                <img src="<%= posting.after_image_url %>" class="card-img" alt="...">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= posting.title %></h5>
+                  <p class="card-text"><%= posting.description %></p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      <% end %>
-    </div>
+        <% end %>
 
+        <div class="container text-left" style="margin-top:30px">
+          <h2>Appointments</h2>
+          <div class="book-appointment">
+            <% # A third option exists here. session[:homeowner_active] can be set to NIL %>
+            <% # which means nobody is logged in %>
+            <% if session[:homeowner_active] == TRUE || session[:homeowner_active] == FALSE %>
+            <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
+            <% end %>
+          </div>
+          <div>
+
+            <% if @appointments %>
+              <% @appointments.each do |appointment| %>
+                <p><%= link_to appointment.description, appointment_path(appointment) %></p>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </body>
 </html>
-
-
-
-<div class="appointments">
-  <h2>Appointments</h2>
-  <div class="book-appointment">
-    <% # A third option exists here. session[:homeowner_active] can be set to NIL %>
-    <% # which means nobody is logged in %>
-    <% if session[:homeowner_active] == TRUE || session[:homeowner_active] == FALSE %>
-    <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
-    <% end %>
-  </div>
-  <div>
-
-    <% if @appointments %>
-      <% @appointments.each do |appointment| %>
-        <p><%= link_to appointment.description, appointment_path(appointment) %></p>
-      <% end %>
-    <% end %>
-  </div>
-</div>
