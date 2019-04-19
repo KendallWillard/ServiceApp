@@ -1,14 +1,15 @@
 <% @service_provider.errors.full_messages.each do |message| %>
 <%= message %>
 <% end %>
-
+<body background="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEX52V7BRncgAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII="
+</body>
 <%= form_for @service_provider do |f| %>
   <%= f.label :service_provider_type %>
   <%= f.text_field :service_provider_type %>
 
   <%= f.label :name %>
   <%= f.text_field :name %>
-
+  <br><br>
   <%= f.label :street_name %>
   <%= f.text_field :street_name %>
 
@@ -20,7 +21,10 @@
 
   <%= f.label :zipcode %>
   <%= f.text_field :zipcode %>
-
+  <br><br>
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
+  <br><br>
   <%= f.label :service_area %>
   <%= f.text_field :service_area %>
 
@@ -32,6 +36,6 @@
   <ul>
     <li><%= b.label {b.check_box + b.text } %></li>
   </ul>
-  <% end %> 
+  <% end %>
   <%= f.submit "Update Service Provider" %>
 <% end %>

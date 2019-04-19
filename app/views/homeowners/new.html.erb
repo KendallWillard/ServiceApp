@@ -1,4 +1,4 @@
-
+<h1>Create a new Homeowner Account</h1>
 <% if @verify_password == false %>
    <h1>ERROR! Passwords must match!</h1>
 <% end %>
@@ -7,7 +7,7 @@
 
 </body>
 <%= form_for @homeowner do |f| %>
-  <br><br>
+  <br>
   <%= f.label :username %>
   <%= f.text_field :username %>
 
