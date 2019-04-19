@@ -3,10 +3,11 @@
    <h1>ERROR! Passwords must match!</h1>
 <% end %>
 
+<body background="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEX52V7BRncgAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII="
 
-
+</body>
 <%= form_for @homeowner do |f| %>
-
+  <br><br>
   <%= f.label :username %>
   <%= f.text_field :username %>
 
@@ -15,13 +16,13 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
-
+  <br><br>
   <%= f.label :first_name %>
   <%= f.text_field :first_name %>
 
   <%= f.label :last_name %>
   <%= f.text_field :last_name %>
-
+  <br><br>
   <%= f.label :street_name %>
   <%= f.text_field :street_name %>
 
@@ -33,7 +34,7 @@
 
   <%= f.label :zipcode %>
   <%= f.number_field :zipcode %>
-
+  <br><br>
   <%= f.label :email %>
   <%= f.text_field :email %>
 

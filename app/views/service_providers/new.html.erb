@@ -1,13 +1,14 @@
 <% @service_provider.errors.full_messages.each do |message| %>
 <p><%= message %></p>
 <% end %>
-
+<body background="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAA1BMVEX52V7BRncgAAAAR0lEQVR4nO3BAQEAAACCIP+vbkhAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAO8GxYgAAb0jQ/cAAAAASUVORK5CYII="
+</body>
 <% if @verify_password == false %>
    <h1>ERROR! Passwords must match!</h1>
 <% end %>
 
 <%= form_for @service_provider do |f| %>
-
+  <br><br>
   <%= f.label :username %>
   <%= f.text_field :username %>
 
@@ -16,10 +17,7 @@
 
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
-
-  <%= f.label :service_provider_type %>
-  <%= f.text_field :service_provider_type %>
-
+  <br><br>
   <%= f.label :name %>
   <%= f.text_field :name %>
 
@@ -34,13 +32,20 @@
 
   <%= f.label :zipcode %>
   <%= f.text_field :zipcode %>
-
+  <br><br>
+  <%= f.label :image_url %>
+  <%= f.text_field :image_url %>
+  <br>
   <%= f.label :service_area %>
   <%= f.text_field :service_area %>
 
   <%= f.label :years_in_service %>
   <%= f.text_field :years_in_service %>
 
+  <%= f.label :service_provider_type %>
+  <%= f.text_field :service_provider_type %>
+
+  <br><br>
   <%= label_tag "Services Offered" %>
 
   <%= f.collection_check_boxes(:service_ids, @services, :id, :name) do |b| %>

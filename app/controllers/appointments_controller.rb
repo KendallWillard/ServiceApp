@@ -1,6 +1,6 @@
 class AppointmentsController < ApplicationController
   before_action :list_all_appointments, only: [:index, :show]
-  before_action :list_all_services, only: [:index, :show, :new]
+  before_action :list_all_services, only: [:index, :show]
   before_action :find_appointment, only: [:show]
   before_action :find_service_provider, only: [:show]
   before_action :find_homeowner, only: []
@@ -11,10 +11,11 @@ class AppointmentsController < ApplicationController
   end
 
   def show
-    @appointment_id = @appointment.id 
+    @appointment_id = @appointment.id
   end
 
   def new
+    find_service_prvider_services
     @appointment = Appointment.new
   end
 
@@ -48,6 +49,10 @@ class AppointmentsController < ApplicationController
 
   def list_all_services
     @services = Service.all
+  end
+
+  def find_service_prvider_services
+    @services = ServiceProvider.find(params["format"]).services
   end
 
 
