@@ -55,11 +55,18 @@
       <% if @service_provider_array %>
         <% @service_provider_array.each do |service_provider| %>
           <div class="card">
-            <img src="<%=service_provider.image_url %>" class="card-img-top" >
-            <div class="card-body">
-              <h5 class="card-title"><%= link_to service_provider.name, service_provider_path(service_provider) %></h5>
-              <p class="card-text"><%=service_provider.state%></p>
-              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+
+            <div class="row">
+              <div class="col-sm-4">
+                  <img src="<%=service_provider.image_url%>" alt="">
+              </div>
+              <div class="col-sm-8">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to service_provider.name, service_provider_path(service_provider) %></h5>
+                  <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                  <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                </div>
+              </div>
             </div>
           </div>
         <% end %>
