@@ -55,11 +55,12 @@ class ServiceProvidersController < ApplicationController
 
   def service_provider_params
     params.require(:service_provider).permit(:id, :service_provider_type, :name, :street_name, :city,
-      :state, :zipcode, :service_area, :years_in_service, :average_rating, :username, :password, :password_confirmation,
-      service_ids:[])
+      :state, :zipcode, :service_area, :years_in_service, :average_rating, :username, :password,
+      :password_confirmation, :image_url, service_ids:[])
   end
 
   def find_service_provider
+    byebug
     @service_provider = ServiceProvider.find(params[:id])
   end
 
