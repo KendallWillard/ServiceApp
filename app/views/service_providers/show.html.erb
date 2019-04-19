@@ -66,7 +66,7 @@
           <h4><p><%= @service_provider.street_name %>, <%= @service_provider.city %>,
             <%= @service_provider.state %> <%= @service_provider.zipcode %></p>
             <p><%= @service_provider.years_in_service %> Years of Experience |
-            Average Customer Rating: <%= @service_provider.average_rating %></p>
+            Average Customer Rating: <%= rand(1..100) %>/100</p>
           </h4>
         </div>
         <div class="col-sm-8">
@@ -106,7 +106,7 @@
           <div class="book-appointment">
             <% # A third option exists here. session[:homeowner_active] can be set to NIL %>
             <% # which means nobody is logged in %>
-            <% if session[:homeowner_active] == TRUE || session[:homeowner_active] == FALSE %>
+            <% if session[:homeowner_active] == TRUE %>
             <%= link_to 'Book Appointment', new_appointment_path(@service_provider) %>
             <% end %>
           </div>
